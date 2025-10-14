@@ -1,20 +1,217 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mi primera pagina web</title>
+    <title>Mi primera página web</title>
+    <style>
+        body {
+            background-color: bisque;
+            font-family: Arial, sans-serif;
+            line-height: 1.6; 
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            text-align: center;
+            font-size: 50px;
+        }
+
+        h2 {
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 20px; 
+            text-align: justify; 
+            margin: 20px; 
+        }
+
+        /* 🎵 ESTILOS DE LAS TARJETAS DE MÚSICA 🎵 */
+        .music-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .music-card {
+            background-color: white;
+            border: 2px solid #d4a373;
+            border-radius: 10px;
+            width: 220px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-align: center;
+            padding: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .music-card:hover {
+            transform: scale(1.05);
+        }
+
+        .music-card img {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .music-card a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #d4a373;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .music-card a:hover {
+            background-color: #b07a45;
+        }
+
+        .music-card p {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* 🎯 FORMULARIO */
+        form {
+            width: 100%;
+            background-color: #fff8ee;
+            border-top: 2px solid #d8b58d;
+            border-bottom: 2px solid #d8b58d;
+            padding: 25px 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form h3 {
+            text-align: center;
+            font-size: 26px;
+            color: #5b3a1f;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            width: 40%; 
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 15px;
+            border: 1px solid #bfa57a;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            background-color: #d4a373;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #b07a45;
+        }
+    </style>
 </head>
 <body>
 
-   <h1><center>Cosas sobre mi</center></h1> 
-   <p>Hola mi nombre es <span style="color:green">Eduardo García Medina</span>, actualmente tengo <span style="color:green">21 años de edad</span>, estoy cursando la carrera de <span style="color:green">Ingeniería en computación</span>. Esta págna lo realizo con el propósito de mostrar mis habilidades en la materia de <span style="color:green">"Programación web"</span>, el cual, en dicha materia espero poder adquirir nuevas habilidades en la creación de páginas webs, también mejorar mis habilidades en la rama de la programación y sobre todo, emplear todo lo aprendido en el ámbito laboral para evitar problemas o confusiones a futuro.</span></p>
-    <br>
-    <h2><center>Mis tops músicas favoritas</center></h2>
-    <ol>
-        <li>Holy Forever - Miel San Marcos and Chris Tolim. <a target="_blank" href="https://youtu.be/5wAfWuKWKJw?si=kNE15hb1Z6RIt2b0">Ver videioclip<a></a></li>
-        <li>Don't stop praying - Matthew West and Miel San Marcos. <a target="_blank" href="https://youtu.be/lTvyPxkz83E?si=ZHSFSlzXlU2Zc9M7">Ver videioclip<a></a></li></li>
-        <li>Be the moon - Chris Tolim. <a target="_blank" href="https://youtu.be/Sejv8a-vCyc?si=EztzQIdM0j2zCbnS">Ver videioclip<a></a></li> 
-        <li>Jesús Obrador de Milagros - Lucio Mella. <a target="_blank" href="https://youtu.be/Jirf9dXDGy4?si=JLucaEQwf_A0zAhR">Ver videioclip<a></a></li></li>
-        <li>Emmanuel - Miel San Marcos. <a target="_blank" href="https://youtu.be/nPQp3bcR7h8?si=UtDSmN-tSrSGWXfY">Ver videioclip<a></a></li></li>
-    </ol>
+   <h1>Cosas sobre mí</h1>
+
+   <p>
+    Hola mi nombre es <span style="color:green">Eduardo García Medina</span>, actualmente tengo <span style="color:green">21 años de edad</span>, estoy cursando la carrera de <span style="color:green">Ingeniería en computación</span>. 
+    Esta página lo realizo con el propósito de mostrar mis habilidades en la materia de 
+    <span style="color:green">"Programación web"</span>, el cual, en dicha materia espero poder adquirir nuevas habilidades en la creación de páginas webs, 
+    también mejorar mis habilidades en la rama de la programación y sobre todo, emplear todo lo aprendido en el ámbito laboral para evitar problemas o confusiones a futuro.
+    De igual manera, la idea que tengo desde que inicié mi carrera universitaria es graduarme, primeramente Dios, y así poder conseguir un buen empleo y con un salario excelente, 
+    y gracias a ello, podré ayudar a mis padres con los gastos de la casa, incluso apoyar a mis hermanos con cierta cantidad de dinero, etc. 
+    Así que, por ahora debo invertir mi tiempo en estudiar en mis materias para mejorar mis calificaciones.
+   </p>
+
+    <h2>Mis tops músicas favoritas</h2>
+
+    <div class="music-container">
+        <div class="music-card">
+            <img src="https://i.ytimg.com/vi/-rJ0EuU7rYU/hqdefault.jpg" alt="Holy Forever">
+            <a target="_blank" href="https://youtu.be/-rJ0EuU7rYU?si=B325okG_Pud1XQ4A">Ver videoclip</a>
+            <p>1. Holy Forever - Miel San Marcos & Chris Tolim</p>
+        </div>
+
+        <div class="music-card">
+            <img src="https://i.ytimg.com/vi/lTvyPxkz83E/hqdefault.jpg" alt="Don't Stop Praying">
+            <a target="_blank" href="https://youtu.be/lTvyPxkz83E?si=ZHSFSlzXlU2Zc9M7">Ver videoclip</a>
+            <p>2. Don't Stop Praying - Matthew West & Miel San Marcos</p>
+        </div>
+
+        <div class="music-card">
+            <img src="https://i.ytimg.com/vi/Sejv8a-vCyc/hqdefault.jpg" alt="Be The Moon">
+            <a target="_blank" href="https://youtu.be/Sejv8a-vCyc?si=EztzQIdM0j2zCbnS">Ver videoclip</a>
+            <p>3. Be The Moon - Chris Tolim</p>
+        </div>
+
+        <div class="music-card">
+            <img src="https://i.ytimg.com/vi/Jirf9dXDGy4/hqdefault.jpg" alt="Jesús Obrador de Milagros">
+            <a target="_blank" href="https://youtu.be/Jirf9dXDGy4?si=JLucaEQwf_A0zAhR">Ver videoclip</a>
+            <p>4. Jesús Obrador de Milagros - Lucio Mella</p>
+        </div>
+
+        <div class="music-card">
+            <img src="https://i.ytimg.com/vi/nPQp3bcR7h8/hqdefault.jpg" alt="Emmanuel">
+            <a target="_blank" href="https://youtu.be/nPQp3bcR7h8?si=UtDSmN-tSrSGWXfY">Ver videoclip</a>
+            <p>5. Emmanuel - Miel San Marcos</p>
+        </div>
+    </div>
+
+    <form action="#" method="post">
+        <h3>Deja tu comentario</h3>
+        <div class="form-container">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+
+            <label for="comentario">Comentario:</label>
+            <textarea id="comentario" name="comentario" placeholder="Escribe tu comentario..." required></textarea>
+
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+
 </body>
 </html>
