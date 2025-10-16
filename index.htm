@@ -1,217 +1,1211 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Mi primera página web</title>
-    <style>
-        body {
-            background-color: bisque;
-            font-family: Arial, sans-serif;
-            line-height: 1.6; 
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eduardo García Medina — Portafolio Personal</title>
+  <meta name="description" content="Estudiante de Ingeniería en Computación. Mi portafolio personal con proyectos, gustos musicales y pasatiempos.">
 
-        h1 {
-            font-family: Arial, sans-serif;
-            font-style: italic;
-            font-weight: bold;
-            text-align: center;
-            font-size: 50px;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
-        h2 {
-            font-family: Helvetica, sans-serif;
-            text-align: center;
-            font-size: 30px;
-        }
+  <style>
+    :root{
+      --bg: #ffeed8;        
+      --card: #ffffff;
+      --primary: #ff7a59;    
+      --accent: #ffd36b;     
+      --muted: #6b4f3a;
+      --text: #3b2a1a;
+      --shadow: rgba(37,36,54,0.12);
+      --radius: 14px;
+      --glass: rgba(255,255,255,0.7);
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
 
-        p {
-            font-size: 20px; 
-            text-align: justify; 
-            margin: 20px; 
-        }
+    /* Variables para modo oscuro */
+    .dark-mode {
+      --bg: #1a1a2e;        
+      --card: #16213e;
+      --primary: #ff7a59;    
+      --accent: #ffd36b;     
+      --muted: #e6e6e6;
+      --text: #f0f0f0;
+      --shadow: rgba(0,0,0,0.3);
+      --glass: rgba(26,26,46,0.7);
+    }
 
-        /* 🎵 ESTILOS DE LAS TARJETAS DE MÚSICA 🎵 */
-        .music-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 10% 10%, #fff8f0 0%, var(--bg) 35%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x: hidden;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
 
-        .music-card {
-            background-color: white;
-            border: 2px solid #d4a373;
-            border-radius: 10px;
-            width: 220px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            text-align: center;
-            padding: 10px;
-            transition: transform 0.3s ease;
-        }
+    .dark-mode body {
+      background: radial-gradient(circle at 10% 10%, #0f3460 0%, var(--bg) 35%);
+    }
 
-        .music-card:hover {
-            transform: scale(1.05);
-        }
+p {
+  line-height: 1.75;              
+  text-align: justify;            
+  text-justify: inter-word;       
+  margin-bottom: 12px;            
+  letter-spacing: 0.1px;          
+}
 
-        .music-card img {
-            width: 100%;
-            height: 180px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
+.lead {
+  line-height: 1.8;               
+  text-align: justify;
+  font-size: 18px;
+  font-weight: 400;
+  color: #4b3b2b;
+}
 
-        .music-card a {
-            display: inline-block;
-            margin-top: 10px;
-            background-color: #d4a373;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
+.dark-mode .lead {
+  color: #d0d0d0;
+}
 
-        .music-card a:hover {
-            background-color: #b07a45;
-        }
+    a{color:inherit; text-decoration:none}
+    img{display:block; max-width:100%}
 
-        .music-card p {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-        }
+    /* Toggle para modo oscuro */
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      color: var(--muted);
+      margin-left: 10px;
+    }
 
-        /* 🎯 FORMULARIO */
-        form {
-            width: 100%;
-            background-color: #fff8ee;
-            border-top: 2px solid #d8b58d;
-            border-bottom: 2px solid #d8b58d;
-            padding: 25px 0;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-        }
+    .theme-toggle:hover {
+      background: rgba(255,122,89,0.08);
+      transform: rotate(15deg);
+    }
 
-        form h3 {
-            text-align: center;
-            font-size: 26px;
-            color: #5b3a1f;
-            margin-bottom: 20px;
-        }
+    .theme-toggle svg {
+      width: 22px;
+      height: 22px;
+    }
 
-        .form-container {
-            width: 40%; 
-            margin: 0 auto;
-        }
+    .sun-icon {
+      display: none;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #333;
-            font-size: 15px;
-        }
+    .dark-mode .moon-icon {
+      display: none;
+    }
 
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 8px;
-            font-size: 15px;
-            border: 1px solid #bfa57a;
-            border-radius: 5px;
-            margin-bottom: 12px;
-            resize: vertical;
-        }
+    .dark-mode .sun-icon {
+      display: block;
+    }
 
-        textarea {
-            height: 80px;
-        }
+    /* Header mejorado */
+    header{
+      position:sticky;
+      top:0;
+      z-index:120;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.65));
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      transition: var(--transition);
+    }
+    
+    .dark-mode header {
+      background: linear-gradient(180deg, rgba(26,26,46,0.85), rgba(26,26,46,0.65));
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    
+    header.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
 
-        input[type="submit"] {
-            display: block;
-            background-color: #d4a373;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 0 auto;
-            transition: background-color 0.3s ease;
-        }
+    .dark-mode header.scrolled {
+      background: rgba(26,26,46,0.95);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    
+    .nav {
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:20px;
+      padding:12px 24px;
+    }
+    
+    .brand {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      font-weight:700;
+      font-family:'Rubik',sans-serif;
+      color:var(--muted);
+      transition: var(--transition);
+    }
+    
+    .brand:hover {
+      transform: translateY(-2px);
+    }
+    
+    .brand .logo {
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background: linear-gradient(135deg,var(--primary),#ffb07a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:700;
+      box-shadow: 0 6px 14px rgba(255,122,89,0.18);
+      transition: var(--transition);
+    }
+    
+    .brand:hover .logo {
+      transform: rotate(5deg);
+      box-shadow: 0 8px 20px rgba(255,122,89,0.25);
+    }
+    
+    nav.main-nav{
+      margin-left:auto;
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    
+    nav.main-nav a{
+      padding:8px 16px;
+      border-radius:10px;
+      color:var(--muted);
+      font-weight:600;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    nav.main-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: var(--transition);
+      transform: translateX(-50%);
+    }
+    
+    nav.main-nav a:hover{
+      transform:translateY(-3px);
+      background:linear-gradient(90deg, rgba(255,122,89,0.08), rgba(255,211,107,0.06));
+    }
+    
+    nav.main-nav a:hover::after {
+      width: 80%;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #b07a45;
-        }
-    </style>
+    .hamburger{
+      display:none;
+      margin-left:auto;
+      background:none;
+      border:none;
+      width:44px;height:44px;border-radius:9px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+      transition: var(--transition);
+    }
+    
+    .hamburger:hover {
+      background: rgba(255,122,89,0.08);
+    }
+    
+    .hamburger svg{width:22px;height:22px; color:var(--muted)}
+
+    /* Main content mejorado */
+    main{
+      max-width:1200px;
+      margin:0 auto;
+      padding:24px;
+    }
+    
+    .hero{
+      text-align:center;
+      padding:60px 24px;
+      border-radius:20px;
+      margin: 40px 0 60px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.4));
+      box-shadow: 0 20px 40px var(--shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dark-mode .hero {
+      background: linear-gradient(135deg, rgba(22,33,62,0.7), rgba(26,26,46,0.4));
+      box-shadow: 0 20px 40px var(--shadow);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    
+    .hero h1{
+      margin:8px 0 16px;
+      font-family:'Rubik',sans-serif;
+      font-size:clamp(2.5rem, 5vw, 3.5rem);
+      color:var(--muted);
+      letter-spacing:-0.6px;
+      line-height: 1.2;
+    }
+
+    /* Contorno negro para títulos en modo oscuro */
+    .dark-mode .hero h1 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    
+    .hero p.lead{
+      margin:0 auto;
+      max-width:700px;
+      font-size:clamp(1rem, 2.5vw, 1.25rem);
+      color:#5a4331;
+      line-height:1.8;
+      letter-spacing: 0.2px;
+    }
+
+    .dark-mode .hero p.lead {
+      color: #d0d0d0;
+    }
+
+    /* Secciones mejoradas */
+    section {margin-top:60px}
+    
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      justify-content:space-between;
+      max-width:1200px;
+      margin:0 auto 24px;
+      padding: 0 16px;
+    }
+    
+    .section-title h2{
+      margin:0;
+      font-family:'Rubik',sans-serif;
+      color:var(--muted);
+      font-size:clamp(1.75rem, 4vw, 2.25rem);
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Contorno para títulos de sección en modo oscuro */
+    .dark-mode .section-title h2 {
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .music-container{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap:24px;
+      padding:14px;
+    }
+    
+    .music-card{
+      background:var(--card);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: 0 8px 22px rgba(59,42,26,0.06);
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: var(--transition);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dark-mode .music-card {
+      box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .music-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transition: var(--transition);
+      transform-origin: left;
+    }
+    
+    .music-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .music-card:hover{ 
+      transform: translateY(-8px); 
+      box-shadow: 0 16px 40px rgba(59,42,26,0.12); 
+    }
+
+    .dark-mode .music-card:hover {
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+    
+    .music-card img{ 
+      border-radius:12px; 
+      width:100%; 
+      height:160px; 
+      object-fit:cover;
+      transition: var(--transition);
+    }
+    
+    .music-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .music-card .label{ 
+      margin-top:12px; 
+      font-weight:600; 
+      color:var(--muted); 
+      text-align:center;
+      line-height: 1.4;
+    }
+
+    /* Contorno para etiquetas de música en modo oscuro */
+    .dark-mode .music-card .label {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .music-card .label strong{ color:var(--primary) }
+
+    .music-actions{
+      margin-top:16px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      width: 100%;
+    }
+    
+    .btn{
+      background:var(--primary);
+      color:white;
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      transition: var(--transition);
+      flex: 1;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    
+    .btn:hover{ 
+      transform:translateY(-4px); 
+      box-shadow: 0 12px 28px rgba(255,122,89,0.25);
+      background: linear-gradient(90deg, var(--primary), #ff9a7a);
+    }
+
+    .hobbies-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;
+      padding:14px;
+    }
+    
+    .hobby{
+      background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,250,240,1));
+      border-radius:20px;
+      padding:24px 20px;
+      text-align:center;
+      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dark-mode .hobby {
+      background: linear-gradient(135deg, rgba(22,33,62,1), rgba(26,26,46,0.9));
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .hobby::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    
+    .hobby:hover{ 
+      transform: translateY(-8px); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .dark-mode .hobby:hover {
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .hobby .thumb{
+      width:120px;
+      height:120px;
+      border-radius:50%; 
+      margin:0 auto 16px;
+      border:6px solid rgba(255,210,107,0.85);
+      overflow:hidden;
+      box-shadow: 0 10px 22px rgba(255,122,89,0.12);
+      transition: var(--transition);
+    }
+    
+    .hobby:hover .thumb {
+      transform: scale(1.05);
+      border-color: var(--primary);
+    }
+    
+    .hobby h4{ 
+      margin:12px 0 8px; 
+      font-family:'Rubik',sans-serif; 
+      color:var(--muted);
+      font-size: 1.25rem;
+    }
+
+    /* Contorno para títulos de hobbies en modo oscuro */
+    .dark-mode .hobby h4 {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+    
+    .hobby p{ 
+      color:#4b3b2b; 
+      font-size:16px; 
+      line-height:1.6;
+      margin: 0;
+    }
+
+    .dark-mode .hobby p {
+      color: #d0d0d0;
+    }
+
+    /* Interlineado específico para el tercer pasatiempo (Redes sociales) */
+    .hobby:nth-child(3) p {
+      line-height: 1.8;
+      letter-spacing: 0.1px;
+    }
+
+    .contact-wrap{
+      display:flex;
+      justify-content:center;
+      padding:24px;
+    }
+    
+    form.contact{
+      width:100%;
+      max-width:500px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(255,250,245,0.95));
+      padding:30px;
+      border-radius:20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      border:1px solid rgba(0,0,0,0.03);
+      backdrop-filter: blur(10px);
+    }
+
+    .dark-mode form.contact {
+      background: linear-gradient(135deg, rgba(22,33,62,0.97), rgba(26,26,46,0.95));
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      border:1px solid rgba(255,255,255,0.05);
+    }
+    
+    form.contact h3{ 
+      margin:0 0 20px; 
+      font-size:24px; 
+      color:var(--muted); 
+      text-align:center; 
+      font-weight:700;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    /* Contorno para título de contacto en modo oscuro */
+    .dark-mode form.contact h3 {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+    
+    .field{ 
+      display:flex; 
+      flex-direction:column; 
+      gap:8px; 
+      margin-top:16px;
+    }
+    
+    .field label {
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* Contorno para etiquetas de formulario en modo oscuro */
+    .dark-mode .field label {
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    }
+    
+    input[type="text"], input[type="email"], textarea{
+      padding:14px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.08);
+      font-family:inherit;
+      font-size:16px;
+      transition: var(--transition);
+      background: rgba(255,255,255,0.8);
+      color: var(--text);
+    }
+
+    .dark-mode input[type="text"], 
+    .dark-mode input[type="email"], 
+    .dark-mode textarea {
+      border:1px solid rgba(255,255,255,0.1);
+      background: rgba(22,33,62,0.8);
+    }
+    
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus{
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255,122,89,0.2);
+      transform: translateY(-2px);
+    }
+    
+    textarea{ 
+      min-height:120px; 
+      resize:vertical;
+    }
+    
+    .submit{
+      margin-top:20px;
+      width:100%;
+      padding:14px;
+      border-radius:12px;
+      border:none;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      color:white; 
+      font-weight:700; 
+      font-size:16px;
+      cursor:pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .submit:hover::before {
+      left: 100%;
+    }
+    
+    .submit:hover{ 
+      transform:translateY(-4px); 
+      box-shadow: 0 12px 28px rgba(255,122,89,0.25);
+    }
+
+    .thanks{
+      display:none;
+      text-align:center;
+      padding:16px;
+      margin-top:16px;
+      background:linear-gradient(90deg,#dff7e2,#e9fff0);
+      color:#13633c;
+      border-radius:10px;
+      font-weight:700;
+      border: 1px solid #a8e6b9;
+    }
+
+    .dark-mode .thanks {
+      background: linear-gradient(90deg, #1a3a2a, #1e4e34);
+      color: #a8e6b9;
+      border: 1px solid #2d5a3d;
+    }
+
+    footer{
+      margin:60px auto 40px;
+      text-align:center;
+      color:#6b4f3a;
+      font-size:15px;
+      opacity:0.9;
+      padding: 0 20px;
+      max-width: 800px;
+    }
+
+    .dark-mode footer {
+      color: #b8b8b8;
+    }
+
+    /* Animaciones mejoradas */
+    .fade-in {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform .7s cubic-bezier(.2,.9,.3,1), opacity .7s ease;
+    }
+    
+    .in-view { 
+      transform:none; 
+      opacity:1; 
+    }
+    
+    /* Efectos de partículas para fondo (opcional) */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,122,89,0.1);
+      animation: float 15s infinite linear;
+    }
+
+    .dark-mode .particle {
+      background: rgba(255,122,89,0.05);
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Mejoras responsive */
+    @media (max-width:880px){
+      .hero h1{ font-size:34px }
+      nav.main-nav{ display:none }
+      .hamburger{ display:flex }
+      .music-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      .hobbies-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width:640px){
+      .nav {
+        padding: 10px 16px;
+      }
+      .hero {
+        padding: 40px 16px;
+        margin: 20px 0 40px;
+      }
+      .section-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .music-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      form.contact {
+        padding: 20px;
+      }
+    }
+    
+    @media (max-width:520px){
+      .brand .logo{ width:40px;height:40px }
+      .hero p.lead{ font-size:15px }
+      .music-card img{ height:140px }
+      .hobby .thumb{ width:100px;height:100px }
+      .hobby {
+        padding: 20px 16px;
+      }
+      /* Ajuste responsive para interlineado en móviles */
+      .hero p.lead {
+        line-height: 1.7;
+      }
+      .hobby:nth-child(3) p {
+        line-height: 1.7;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .fade-in, .music-card, .hobby, .submit, .btn, .brand, header { 
+        transition:none !important; 
+        transform:none !important; 
+      }
+      .particle {
+        animation: none;
+        opacity: 0;
+      }
+    }
+    .logo img {
+  height: 50px;
+  width: auto;
+  border-radius: 25%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+  </style>
 </head>
 <body>
 
-   <h1>Cosas sobre mí</h1>
+  <!-- Partículas de fondo -->
+  <div class="particles" id="particles"></div>
 
-   <p>
-    Hola mi nombre es <span style="color:green">Eduardo García Medina</span>, actualmente tengo <span style="color:green">21 años de edad</span>, estoy cursando la carrera de <span style="color:green">Ingeniería en computación</span>. 
-    Esta página lo realizo con el propósito de mostrar mis habilidades en la materia de 
-    <span style="color:green">"Programación web"</span>, el cual, en dicha materia espero poder adquirir nuevas habilidades en la creación de páginas webs, 
-    también mejorar mis habilidades en la rama de la programación y sobre todo, emplear todo lo aprendido en el ámbito laboral para evitar problemas o confusiones a futuro.
-    De igual manera, la idea que tengo desde que inicié mi carrera universitaria es graduarme, primeramente Dios, y así poder conseguir un buen empleo y con un salario excelente, 
-    y gracias a ello, podré ayudar a mis padres con los gastos de la casa, incluso apoyar a mis hermanos con cierta cantidad de dinero, etc. 
-    Así que, por ahora debo invertir mi tiempo en estudiar en mis materias para mejorar mis calificaciones.
-   </p>
-
-    <h2>Mis tops músicas favoritas</h2>
-
-    <div class="music-container">
-        <div class="music-card">
-            <img src="https://i.ytimg.com/vi/-rJ0EuU7rYU/hqdefault.jpg" alt="Holy Forever">
-            <a target="_blank" href="https://youtu.be/-rJ0EuU7rYU?si=B325okG_Pud1XQ4A">Ver videoclip</a>
-            <p>1. Holy Forever - Miel San Marcos & Chris Tolim</p>
+  <header role="banner" id="mainHeader">
+    <div class="nav">
+      <div class="brand" aria-label="marca">
+        <div class="logo"><img src="logo.jpeg" alt="Logo Eduardo García Medina"></div>
+        <div>
+          <div style="font-size:14px;color:#8b6f59">Eduardo García Medina</div>
+          <div style="font-size:12px;color:#b08966">Estudiante · Programación web</div>
         </div>
+      </div>
 
-        <div class="music-card">
-            <img src="https://i.ytimg.com/vi/lTvyPxkz83E/hqdefault.jpg" alt="Don't Stop Praying">
-            <a target="_blank" href="https://youtu.be/lTvyPxkz83E?si=ZHSFSlzXlU2Zc9M7">Ver videoclip</a>
-            <p>2. Don't Stop Praying - Matthew West & Miel San Marcos</p>
-        </div>
+      <nav class="main-nav" role="navigation" aria-label="Menú principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#musica">Música</a>
+        <a href="#pasatiempos">Pasatiempos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
 
-        <div class="music-card">
-            <img src="https://i.ytimg.com/vi/Sejv8a-vCyc/hqdefault.jpg" alt="Be The Moon">
-            <a target="_blank" href="https://youtu.be/Sejv8a-vCyc?si=EztzQIdM0j2zCbnS">Ver videoclip</a>
-            <p>3. Be The Moon - Chris Tolim</p>
-        </div>
+      <!-- Botón para cambiar tema -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
 
-        <div class="music-card">
-            <img src="https://i.ytimg.com/vi/Jirf9dXDGy4/hqdefault.jpg" alt="Jesús Obrador de Milagros">
-            <a target="_blank" href="https://youtu.be/Jirf9dXDGy4?si=JLucaEQwf_A0zAhR">Ver videoclip</a>
-            <p>4. Jesús Obrador de Milagros - Lucio Mella</p>
-        </div>
-
-        <div class="music-card">
-            <img src="https://i.ytimg.com/vi/nPQp3bcR7h8/hqdefault.jpg" alt="Emmanuel">
-            <a target="_blank" href="https://youtu.be/nPQp3bcR7h8?si=UtDSmN-tSrSGWXfY">Ver videoclip</a>
-            <p>5. Emmanuel - Miel San Marcos</p>
-        </div>
+      <button class="hamburger" aria-label="Abrir menú" id="hambtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
 
-    <form action="#" method="post">
-        <h3>Deja tu comentario</h3>
-        <div class="form-container">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+    <div id="mobileMenu" style="display:none; padding:16px 24px; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95)); border-bottom:1px solid rgba(0,0,0,0.04); backdrop-filter: blur(10px);">
+      <a href="#inicio" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05); transition: all 0.2s ease">Inicio</a>
+      <a href="#musica" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05); transition: all 0.2s ease">Música</a>
+      <a href="#pasatiempos" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05); transition: all 0.2s ease">Pasatiempos</a>
+      <a href="#contacto" style="display:block;padding:12px 0;color:var(--muted);font-weight:600; transition: all 0.2s ease">Contacto</a>
+    </div>
+  </header>
 
-            <label for="correo">Correo:</label>
-            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+  <main id="inicio">
+    <section class="hero fade-in">
+      <h1>Hola — Soy Eduardo (Lalito)</h1>
+      <p class="lead">Estudiante de Ingeniería en Computación. Esta página muestra mi trabajo, mis gustos y proyectos. Me encanta crear, aprender y compartir. Explora mis músicas y pasatiempos — siéntete libre de dejar un comentario.</p>
+    </section>
 
-            <label for="comentario">Comentario:</label>
-            <textarea id="comentario" name="comentario" placeholder="Escribe tu comentario..." required></textarea>
+    <div class="section-title">
+      <h2 id="musica">Mis tops músicas favoritas</h2>
+      <div style="font-size:16px;color:#8b6f59;font-weight:600">Playlist Cristiana</div>
+    </div>
 
-            <input type="submit" value="Enviar">
+    <section class="music-container" aria-labelledby="musica">
+      <article class="music-card fade-in">
+        <img loading="lazy" src="https://i.ytimg.com/vi/-rJ0EuU7rYU/hqdefault.jpg" alt="Holy Forever - Miel San Marcos & Chris Tolim">
+        <div class="label"><strong>1.</strong> Holy Forever - Miel San Marcos & Chris Tolim</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/-rJ0EuU7rYU?si=B325okG_Pud1XQ4A">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Ver
+          </a>
         </div>
-    </form>
+      </article>
 
+      <article class="music-card fade-in">
+        <img loading="lazy" src="https://i.ytimg.com/vi/lTvyPxkz83E/hqdefault.jpg" alt="Don't Stop Praying - Matthew West & Miel San Marcos">
+        <div class="label"><strong>2.</strong> Don't Stop Praying - Matthew West & Miel San Marcos</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/lTvyPxkz83E?si=ZHSFSlzXlU2Zc9M7">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Ver
+          </a>
+        </div>
+      </article>
+
+      <article class="music-card fade-in">
+        <img loading="lazy" src="https://i.ytimg.com/vi/Sejv8a-vCyc/hqdefault.jpg" alt="Be The Moon - Chris Tolim">
+        <div class="label"><strong>3.</strong> Be The Moon - Chris Tolim</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Sejv8a-vCyc?si=EztzQIdM0j2zCbnS">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Ver
+          </a>
+        </div>
+      </article>
+
+      <article class="music-card fade-in">
+        <img loading="lazy" src="https://i.ytimg.com/vi/Jirf9dXDGy4/hqdefault.jpg" alt="Jesús Obrador de Milagros - Lucio Mella">
+        <div class="label"><strong>4.</strong> Jesús Obrador de Milagros - Lucio Mella</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Jirf9dXDGy4?si=JLucaEQwf_A0zAhR">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Ver
+          </a>
+        </div>
+      </article>
+
+      <article class="music-card fade-in">
+        <img loading="lazy" src="https://i.ytimg.com/vi/nPQp3bcR7h8/hqdefault.jpg" alt="Emmanuel - Miel San Marcos">
+        <div class="label"><strong>5.</strong> Emmanuel - Miel San Marcos</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/nPQp3bcR7h8?si=UtDSmN-tSrSGWXfY">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Ver
+          </a>
+        </div>
+      </article>
+
+      <article class="music-card fade-in">
+  <img loading="lazy" src="https://i.ytimg.com/vi/Pn-PqlB_K4M/hqdefault.jpg" alt="O Come to the Altar - Elevation Worship">
+  <div class="label"><strong>6.</strong> Generación 12 - Quiero Conocer A Jesús (Yeshua)/Nuestro Dios</div>
+  <div class="music-actions">
+    <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Pn-PqlB_K4M?si=5UXRAxP9hvvpcYEG">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      Ver
+    </a>
+  </div>
+</article>
+
+<article class="music-card fade-in">
+  <img loading="lazy" src="https://i.ytimg.com/vi/y3tyQqjS4qY/hqdefault.jpg" alt="Way Maker - Leeland">
+  <div class="label"><strong>7.</strong> Generación 12 - Vuelvo A Casa VIDEO OFICIAL</div>
+  <div class="music-actions">
+    <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/y3tyQqjS4qY?si=8mY0bvfJNRPD7ZcJ">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      Ver
+    </a>
+  </div>
+</article>
+
+<article class="music-card fade-in">
+  <img loading="lazy" src="https://i.ytimg.com/vi/tulshRDlQKM/hqdefault.jpg" alt="What a Beautiful Name - Hillsong Worship">
+  <div class="label"><strong>8.</strong> Jotta A - Muéstrame Tu Gloria (Vídeo Oficial)</div>
+  <div class="music-actions">
+    <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/tulshRDlQKM?si=hSgEH-ktCotO4aph">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      Ver
+    </a>
+  </div>
+</article>
+
+    </section>
+
+    <div class="section-title" style="margin-top:48px">
+      <h2 id="pasatiempos">Pasatiempos favoritos</h2>
+      <div style="font-size:16px;color:#8b6f59;font-weight:600">Lo que hago en mi tiempo libre</div>
+    </div>
+
+    <section class="hobbies-grid" aria-labelledby="pasatiempos">
+      <div class="hobby fade-in">
+        <div class="thumb"><img loading="lazy" src="https://miro.medium.com/1*oZ4UrzmTiW8W6Jw5JeWQxQ.jpeg" alt="Videojuegos" style="width:100%;height:100%;object-fit:cover"></div>
+        <h4>🎮 Jugar videojuegos</h4>
+        <p>Me entretengo por mucho tiempo, también, suelo estresarme porque pierdo muy seguido...</p>
+      </div>
+
+      <div class="hobby fade-in">
+        <div class="thumb"><img loading="lazy" src="https://www.periodicopublicidad.com/asset/thumbnail,1280,720,center,center/media/lapublicidad/images/2021/04/13/20210413084201096589.jpg" alt="Escuchar música" style="width:100%;height:100%;object-fit:cover"></div>
+        <h4>🎧 Escuchar música</h4>
+        <p>La música me inspira en mis estudios y proyectos; me ayuda a concentrarme y a transformar el ánimo de mi día.</p>
+      </div>
+
+      <div class="hobby fade-in">
+        <div class="thumb"><img loading="lazy" src="https://static0.makeuseofimages.com/wordpress/wp-content/uploads/2024/08/some-3d-social-media-icons.jpg?w=1200&h=628&fit=crop" alt="Redes sociales" style="width:100%;height:100%;object-fit:cover"></div>
+        <h4>🌐 Redes sociales</h4>
+        <p>Me gusta distraerme un rato viendo videos que me causan gracias, aunque suelo dedicarle muchio tiempo en ocasiones.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT / FORM -->
+    <div id="contacto" class="section-title" style="margin-top:48px">
+      <h2>Contacto</h2>
+      <div style="font-size:16px;color:#8b6f59;font-weight:600">Deja tu comentario</div>
+    </div>
+
+    <div class="contact-wrap fade-in">
+      <form class="contact" id="contactForm" aria-label="Formulario de contacto">
+        <h3>Escríbeme</h3>
+
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="field">
+          <label for="correo">Correo</label>
+          <input id="correo" name="correo" type="email" placeholder="ejemplo@correo.com" required>
+        </div>
+
+        <div class="field">
+          <label for="comentario">Comentario</label>
+          <textarea id="comentario" name="comentario" placeholder="Escribe tu comentario..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit">Enviar</button>
+        <div class="thanks" id="thanks">¡Gracias! Tu comentario fue enviado correctamente. 😊</div>
+      </form>
+    </div>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Eduardo García Medina — Página creada con fines educativo - Proyecto de Programación Web
+  </footer>
+
+  <script>
+    // Año actual
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Función para cambiar entre modo claro y oscuro
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Verificar preferencia guardada o preferencia del sistema
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      body.classList.add('dark-mode');
+    }
+
+    // Alternar modo oscuro
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      // Guardar preferencia
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Efecto de partículas
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 20;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Tamaño y posición aleatorios
+        const size = Math.random() * 60 + 10;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 15;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${left}%`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        container.appendChild(particle);
+      }
+    }
+    
+    createParticles();
+
+    // Header scroll effect
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Menú móvil
+    const hambtn = document.getElementById('hambtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (hambtn) {
+      hambtn.addEventListener('click', () => {
+        if (mobileMenu.style.display === 'none' || !mobileMenu.style.display) {
+          mobileMenu.style.display = 'block';
+          hambtn.setAttribute('aria-expanded', 'true');
+        } else {
+          mobileMenu.style.display = 'none';
+          hambtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Navegación suave
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const id = this.getAttribute('href');
+        if(id.length > 1) {
+          e.preventDefault();
+          const el = document.querySelector(id);
+          if(el) {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+            
+            // Cerrar menú móvil al hacer clic en un enlace
+            if(window.innerWidth < 880) {
+              mobileMenu.style.display = 'none';
+              hambtn.setAttribute('aria-expanded', 'false');
+            }
+          }
+        }
+      });
+    });
+
+    // Animación al hacer scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    // Formulario de contacto
+    const form = document.getElementById('contactForm');
+    const thanks = document.getElementById('thanks');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = form.nombre.value.trim();
+        if(!name) { 
+          form.nombre.focus(); 
+          return; 
+        }
+
+        thanks.style.display = 'block';
+        form.querySelector('.submit').disabled = true;
+        
+        setTimeout(() => {
+          form.reset();
+          form.querySelector('.submit').disabled = false;
+          
+          setTimeout(() => { 
+            thanks.style.display = 'none'; 
+          }, 3500);
+        }, 900);
+      });
+    }
+
+    // Cerrar menú móvil al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if(window.innerWidth < 880 && mobileMenu.style.display === 'block') {
+        const isClickInside = e.composedPath().includes(mobileMenu) || e.composedPath().includes(hambtn);
+        if(!isClickInside) {
+          mobileMenu.style.display = 'none';
+          hambtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
+
