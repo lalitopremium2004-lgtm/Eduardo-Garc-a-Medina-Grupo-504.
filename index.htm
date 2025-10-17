@@ -10,10 +10,10 @@
 
   <style>
     :root{
-      --bg: #ffeed8;        
+      --bg: #ffeed8;
       --card: #ffffff;
-      --primary: #ff7a59;    
-      --accent: #ffd36b;     
+      --primary: #ff7a59;
+      --accent: #ffd36b;
       --muted: #6b4f3a;
       --text: #3b2a1a;
       --shadow: rgba(37,36,54,0.12);
@@ -22,57 +22,46 @@
       --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* Variables para modo oscuro */
-    .dark-mode {
-      --bg: #1a1a2e;        
+    /* Variables para modo oscuro (aplicadas a body.dark-mode) */
+    body.dark-mode {
+      --bg: #1a1a2e;
       --card: #16213e;
-      --primary: #ff7a59;    
-      --accent: #ffd36b;     
+      --primary: #ff7a59;
+      --accent: #ffd36b;
       --muted: #e6e6e6;
       --text: #f0f0f0;
       --shadow: rgba(0,0,0,0.3);
       --glass: rgba(26,26,46,0.7);
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
     body{
       margin:0;
       font-family: 'Poppins', sans-serif;
       background: radial-gradient(circle at 10% 10%, #fff8f0 0%, var(--bg) 35%);
-      color:var(--text);
+      color: var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       overflow-x: hidden;
       transition: background 0.5s ease, color 0.5s ease;
+      font-size: 17px;
+      line-height: 1.6;
+      animation: fadeIn 0.8s ease-in-out;
     }
 
-    .dark-mode body {
-      background: radial-gradient(circle at 10% 10%, #0f3460 0%, var(--bg) 35%);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-p {
-  line-height: 1.75;              
-  text-align: justify;            
-  text-justify: inter-word;       
-  margin-bottom: 12px;            
-  letter-spacing: 0.1px;          
-}
+    p { line-height: 1.75; text-align: justify; text-justify: inter-word; margin-bottom: 12px; letter-spacing: 0.1px; }
+    .lead { line-height: 1.8; font-size: 18px; font-weight: 400; color: #4b3b2b; }
+    body.dark-mode .lead { color: #d0d0d0; }
 
-.lead {
-  line-height: 1.8;               
-  text-align: justify;
-  font-size: 18px;
-  font-weight: 400;
-  color: #4b3b2b;
-}
-
-.dark-mode .lead {
-  color: #d0d0d0;
-}
-
-    a{color:inherit; text-decoration:none}
-    img{display:block; max-width:100%}
+    a{ color: inherit; text-decoration: none; }
+    img{ display:block; max-width:100%; height: auto; }
 
     /* Toggle para modo oscuro */
     .theme-toggle {
@@ -89,32 +78,12 @@ p {
       color: var(--muted);
       margin-left: 10px;
     }
+    .theme-toggle:hover { background: rgba(255,122,89,0.06); transform: rotate(8deg); }
+    .theme-toggle svg { width: 20px; height: 20px; }
 
-    .theme-toggle:hover {
-      background: rgba(255,122,89,0.08);
-      transform: rotate(15deg);
-    }
-
-    .theme-toggle svg {
-      width: 22px;
-      height: 22px;
-    }
-
-    .sun-icon {
-      display: none;
-    }
-
-    .dark-mode .moon-icon {
-      display: none;
-    }
-
-    .dark-mode .sun-icon {
-      display: block;
-    }
-
-    /* Header mejorado */
+    /* Header */
     header{
-      position:sticky;
+      position: sticky;
       top:0;
       z-index:120;
       backdrop-filter: blur(12px);
@@ -123,24 +92,14 @@ p {
       box-shadow: 0 6px 20px rgba(0,0,0,0.04);
       transition: var(--transition);
     }
-    
-    .dark-mode header {
+    body.dark-mode header {
       background: linear-gradient(180deg, rgba(26,26,46,0.85), rgba(26,26,46,0.65));
       border-bottom:1px solid rgba(255,255,255,0.04);
       box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
-    
-    header.scrolled {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-    }
+    header.scrolled { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    body.dark-mode header.scrolled { box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
 
-    .dark-mode header.scrolled {
-      background: rgba(26,26,46,0.95);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-    }
-    
     .nav {
       max-width:1200px;
       margin:0 auto;
@@ -149,21 +108,10 @@ p {
       gap:20px;
       padding:12px 24px;
     }
-    
-    .brand {
-      display:flex;
-      gap:12px;
-      align-items:center;
-      font-weight:700;
-      font-family:'Rubik',sans-serif;
-      color:var(--muted);
-      transition: var(--transition);
-    }
-    
-    .brand:hover {
-      transform: translateY(-2px);
-    }
-    
+
+    .brand { display:flex; gap:12px; align-items:center; font-weight:700; font-family:'Rubik',sans-serif; color:var(--muted); transition: var(--transition); }
+    .brand:hover { transform: translateY(-2px); }
+
     .brand .logo {
       width:44px;
       height:44px;
@@ -176,654 +124,540 @@ p {
       font-weight:700;
       box-shadow: 0 6px 14px rgba(255,122,89,0.18);
       transition: var(--transition);
-    }
-    
-    .brand:hover .logo {
-      transform: rotate(5deg);
-      box-shadow: 0 8px 20px rgba(255,122,89,0.25);
-    }
-    
-    nav.main-nav{
-      margin-left:auto;
-      display:flex;
-      gap:16px;
-      align-items:center;
-    }
-    
-    nav.main-nav a{
-      padding:8px 16px;
-      border-radius:10px;
-      color:var(--muted);
-      font-weight:600;
-      transition: var(--transition);
-      position: relative;
-    }
-    
-    nav.main-nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transition: var(--transition);
-      transform: translateX(-50%);
-    }
-    
-    nav.main-nav a:hover{
-      transform:translateY(-3px);
-      background:linear-gradient(90deg, rgba(255,122,89,0.08), rgba(255,211,107,0.06));
-    }
-    
-    nav.main-nav a:hover::after {
-      width: 80%;
-    }
-
-    .hamburger{
-      display:none;
-      margin-left:auto;
-      background:none;
-      border:none;
-      width:44px;height:44px;border-radius:9px;
-      display:flex;align-items:center;justify-content:center;
-      cursor:pointer;
-      transition: var(--transition);
-    }
-    
-    .hamburger:hover {
-      background: rgba(255,122,89,0.08);
-    }
-    
-    .hamburger svg{width:22px;height:22px; color:var(--muted)}
-
-    /* Main content mejorado */
-    main{
-      max-width:1200px;
-      margin:0 auto;
-      padding:24px;
-    }
-    
-    .hero{
-      text-align:center;
-      padding:60px 24px;
-      border-radius:20px;
-      margin: 40px 0 60px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.4));
-      box-shadow: 0 20px 40px var(--shadow);
-      backdrop-filter: blur(10px);
-      position: relative;
       overflow: hidden;
     }
+    .brand:hover .logo { transform: rotate(5deg); box-shadow: 0 8px 20px rgba(255,122,89,0.25); }
 
-    .dark-mode .hero {
-      background: linear-gradient(135deg, rgba(22,33,62,0.7), rgba(26,26,46,0.4));
-      box-shadow: 0 20px 40px var(--shadow);
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-    }
-    
-    .hero h1{
-      margin:8px 0 16px;
-      font-family:'Rubik',sans-serif;
-      font-size:clamp(2.5rem, 5vw, 3.5rem);
-      color:var(--muted);
-      letter-spacing:-0.6px;
-      line-height: 1.2;
-    }
-
-    /* Contorno negro para títulos en modo oscuro */
-    .dark-mode .hero h1 {
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    }
-    
-    .hero p.lead{
-      margin:0 auto;
-      max-width:700px;
-      font-size:clamp(1rem, 2.5vw, 1.25rem);
-      color:#5a4331;
-      line-height:1.8;
-      letter-spacing: 0.2px;
-    }
-
-    .dark-mode .hero p.lead {
-      color: #d0d0d0;
-    }
-
-    /* Secciones mejoradas */
-    section {margin-top:60px}
-    
-    .section-title{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      justify-content:space-between;
-      max-width:1200px;
-      margin:0 auto 24px;
-      padding: 0 16px;
-    }
-    
-    .section-title h2{
-      margin:0;
-      font-family:'Rubik',sans-serif;
-      color:var(--muted);
-      font-size:clamp(1.75rem, 4vw, 2.25rem);
-      position: relative;
-      display: inline-block;
-    }
-
-    /* Contorno para títulos de sección en modo oscuro */
-    .dark-mode .section-title h2 {
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    }
-    
-    .section-title h2::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 2px;
-    }
-
-    .music-container{
-      display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap:24px;
-      padding:14px;
-    }
-    
-    .music-card{
-      background:var(--card);
-      border-radius:16px;
-      padding:16px;
-      box-shadow: 0 8px 22px rgba(59,42,26,0.06);
-      border: 1px solid rgba(0,0,0,0.03);
-      transition: var(--transition);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dark-mode .music-card {
-      box-shadow: 0 8px 22px rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .music-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transform: scaleX(0);
-      transition: var(--transition);
-      transform-origin: left;
-    }
-    
-    .music-card:hover::before {
-      transform: scaleX(1);
-    }
-    
-    .music-card:hover{ 
-      transform: translateY(-8px); 
-      box-shadow: 0 16px 40px rgba(59,42,26,0.12); 
-    }
-
-    .dark-mode .music-card:hover {
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    }
-    
-    .music-card img{ 
-      border-radius:12px; 
-      width:100%; 
-      height:160px; 
-      object-fit:cover;
-      transition: var(--transition);
-    }
-    
-    .music-card:hover img {
-      transform: scale(1.05);
-    }
-    
-    .music-card .label{ 
-      margin-top:12px; 
-      font-weight:600; 
-      color:var(--muted); 
-      text-align:center;
-      line-height: 1.4;
-    }
-
-    /* Contorno para etiquetas de música en modo oscuro */
-    .dark-mode .music-card .label {
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    
-    .music-card .label strong{ color:var(--primary) }
-
-    .music-actions{
-      margin-top:16px;
-      display:flex;
-      gap:8px;
-      align-items:center;
-      width: 100%;
-    }
-    
-    .btn{
-      background:var(--primary);
-      color:white;
-      padding:10px 16px;
-      border-radius:10px;
-      font-weight:700;
-      border:none;
-      cursor:pointer;
-      transition: var(--transition);
-      flex: 1;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    
-    .btn:hover{ 
-      transform:translateY(-4px); 
-      box-shadow: 0 12px 28px rgba(255,122,89,0.25);
-      background: linear-gradient(90deg, var(--primary), #ff9a7a);
-    }
-
-    .hobbies-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap:24px;
-      padding:14px;
-    }
-    
-    .hobby{
-      background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,250,240,1));
-      border-radius:20px;
-      padding:24px 20px;
-      text-align:center;
-      border: 1px solid rgba(0,0,0,0.03);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dark-mode .hobby {
-      background: linear-gradient(135deg, rgba(22,33,62,1), rgba(26,26,46,0.9));
-      border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    
-    .hobby::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-    }
-    
-    .hobby:hover{ 
-      transform: translateY(-8px); 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    .dark-mode .hobby:hover {
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-    
-    .hobby .thumb{
-      width:120px;
-      height:120px;
-      border-radius:50%; 
-      margin:0 auto 16px;
-      border:6px solid rgba(255,210,107,0.85);
-      overflow:hidden;
-      box-shadow: 0 10px 22px rgba(255,122,89,0.12);
-      transition: var(--transition);
-    }
-    
-    .hobby:hover .thumb {
-      transform: scale(1.05);
-      border-color: var(--primary);
-    }
-    
-    .hobby h4{ 
-      margin:12px 0 8px; 
-      font-family:'Rubik',sans-serif; 
-      color:var(--muted);
-      font-size: 1.25rem;
-    }
-
-    /* Contorno para títulos de hobbies en modo oscuro */
-    .dark-mode .hobby h4 {
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    }
-    
-    .hobby p{ 
-      color:#4b3b2b; 
-      font-size:16px; 
-      line-height:1.6;
-      margin: 0;
-    }
-
-    .dark-mode .hobby p {
-      color: #d0d0d0;
-    }
-
-    /* Interlineado específico para el tercer pasatiempo (Redes sociales) */
-    .hobby:nth-child(3) p {
-      line-height: 1.8;
-      letter-spacing: 0.1px;
-    }
-
-    .contact-wrap{
-      display:flex;
-      justify-content:center;
-      padding:24px;
-    }
-    
-    form.contact{
+    /* Si usamos imagen, hacemos que la imagen llene el contenedor */
+    .brand .logo img {
       width:100%;
-      max-width:500px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(255,250,245,0.95));
-      padding:30px;
-      border-radius:20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-      border:1px solid rgba(0,0,0,0.03);
-      backdrop-filter: blur(10px);
+      height:100%;
+      object-fit: cover;
+      display:block;
+      border-radius:8px;
+      transition: transform 0.3s ease;
     }
+    .brand .logo img:hover { transform: scale(1.03); }
 
-    .dark-mode form.contact {
-      background: linear-gradient(135deg, rgba(22,33,62,0.97), rgba(26,26,46,0.95));
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      border:1px solid rgba(255,255,255,0.05);
-    }
-    
-    form.contact h3{ 
-      margin:0 0 20px; 
-      font-size:24px; 
-      color:var(--muted); 
-      text-align:center; 
-      font-weight:700;
-      font-family: 'Rubik', sans-serif;
-    }
+    nav.main-nav{ margin-left:auto; display:flex; gap:16px; align-items:center; }
+    nav.main-nav a{ padding:8px 16px; border-radius:10px; color:var(--muted); font-weight:600; transition: var(--transition); position: relative; }
+    nav.main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: var(--transition); transform: translateX(-50%); }
+    nav.main-nav a:hover{ transform:translateY(-3px); background:linear-gradient(90deg, rgba(255,122,89,0.06), rgba(255,211,107,0.04)); }
+    nav.main-nav a:hover::after { width: 80%; }
 
-    /* Contorno para título de contacto en modo oscuro */
-    .dark-mode form.contact h3 {
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    }
-    
-    .field{ 
-      display:flex; 
-      flex-direction:column; 
-      gap:8px; 
-      margin-top:16px;
-    }
-    
-    .field label {
+    .hamburger{ display:none; margin-left:auto; background:none; border:none; width:44px;height:44px;border-radius:9px; display:flex;align-items:center;justify-content:center; cursor:pointer; transition: var(--transition); }
+    .hamburger:hover { background: rgba(255,122,89,0.06); }
+    .hamburger svg{ width:22px; height:22px; color:var(--muted); }
+
+    /* Main */
+    main{ max-width:1200px; margin:0 auto; padding:24px; }
+    .hero{ text-align:center; padding:60px 24px; border-radius:20px; margin: 40px 0 60px; background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.4)); box-shadow: 0 20px 40px var(--shadow); backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+    body.dark-mode .hero { background: linear-gradient(135deg, rgba(22,33,62,0.7), rgba(26,26,46,0.4)); }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+    .hero h1{ margin:8px 0 16px; font-family:'Rubik',sans-serif; font-size:clamp(2.2rem, 5vw, 3.2rem); color:var(--muted); letter-spacing:-0.6px; line-height: 1.15; }
+    body.dark-mode .hero h1 { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+    .hero p.lead{ margin:0 auto; max-width:700px; font-size:clamp(1rem, 2.5vw, 1.15rem); color:#5a4331; line-height:1.8; letter-spacing: 0.2px; }
+    body.dark-mode .hero p.lead { color: #d0d0d0; }
+
+    section { margin-top:60px; }
+
+    .section-title{ display:flex; align-items:center; gap:12px; justify-content:space-between; max-width:1200px; margin:0 auto 24px; padding: 0 16px; }
+    .section-title h2{ margin:0; font-family:'Rubik',sans-serif; color:var(--muted); font-size:clamp(1.5rem, 3.5vw, 2rem); position: relative; display: inline-block; }
+    body.dark-mode .section-title h2 { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); }
+    .section-title h2::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 60px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; }
+
+    /* Music grid */
+    .music-container{ display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:24px; padding:14px; }
+    .music-card{ background:var(--card); border-radius:16px; padding:16px; box-shadow: 0 8px 22px rgba(59,42,26,0.06); border: 1px solid rgba(0,0,0,0.03); transition: var(--transition); display:flex; flex-direction:column; align-items:center; justify-content:space-between; position: relative; overflow: hidden; }
+    body.dark-mode .music-card { box-shadow: 0 8px 22px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); }
+    .music-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: var(--transition); transform-origin: left; }
+    .music-card:hover::before { transform: scaleX(1); }
+    .music-card:hover{ transform: translateY(-8px); box-shadow: 0 16px 40px rgba(59,42,26,0.12); }
+    body.dark-mode .music-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .music-card img{ border-radius:12px; width:100%; height:160px; object-fit:cover; transition: var(--transition); }
+    .music-card:hover img { transform: scale(1.05); }
+    .music-card .label{ margin-top:12px; font-weight:600; color:var(--muted); text-align:center; line-height: 1.4; }
+    body.dark-mode .music-card .label { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+    .music-card .label strong{ color:var(--primary); }
+
+    /* Buttons */
+    button, .btn {
+      background: var(--primary);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      padding: 10px 20px;
       font-weight: 600;
-      color: var(--muted);
+      transition: background 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease;
+      display:inline-flex; align-items:center; gap:8px;
     }
+    button:hover, .btn:hover { background: #ff936e; transform: translateY(-3px); box-shadow: 0 10px 22px rgba(255,122,89,0.12); }
 
-    /* Contorno para etiquetas de formulario en modo oscuro */
-    .dark-mode .field label {
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-    }
-    
+    .hobbies-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:24px; padding:14px; }
+    .hobby{ background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,250,240,1)); border-radius:20px; padding:24px 20px; text-align:center; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 10px 25px rgba(0,0,0,0.06); transition: var(--transition); position: relative; overflow: hidden; }
+    body.dark-mode .hobby { background: linear-gradient(135deg, rgba(22,33,62,1), rgba(26,26,46,0.9)); border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .hobby::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+    .hobby:hover{ transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    body.dark-mode .hobby:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .hobby .thumb{ width:120px; height:120px; border-radius:50%; margin:0 auto 16px; border:6px solid rgba(255,210,107,0.85); overflow:hidden; box-shadow: 0 10px 22px rgba(255,122,89,0.12); transition: var(--transition); }
+    .hobby:hover .thumb { transform: scale(1.05); border-color: var(--primary); }
+    .hobby h4{ margin:12px 0 8px; font-family:'Rubik',sans-serif; color:var(--muted); font-size: 1.25rem; }
+    body.dark-mode .hobby h4 { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); }
+    .hobby p{ color:#4b3b2b; font-size:16px; line-height:1.6; margin: 0; }
+    body.dark-mode .hobby p { color: #d0d0d0; }
+
+    /* Contact */
+    .contact-wrap{ display:flex; justify-content:center; padding:24px; }
+    form.contact{ width:100%; max-width:500px; background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(255,250,245,0.95)); padding:30px; border-radius:20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.03); backdrop-filter: blur(10px); }
+    body.dark-mode form.contact { background: linear-gradient(135deg, rgba(22,33,62,0.97), rgba(26,26,46,0.95)); box-shadow: 0 15px 35px rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.05); }
+    form.contact h3{ margin:0 0 20px; font-size:24px; color:var(--muted); text-align:center; font-weight:700; font-family: 'Rubik', sans-serif; }
+    body.dark-mode form.contact h3 { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); }
+
+    .field{ display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+    .field label { font-weight: 600; color: var(--muted); }
+    body.dark-mode .field label { text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4); }
+
     input[type="text"], input[type="email"], textarea{
-      padding:14px;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,0.08);
-      font-family:inherit;
-      font-size:16px;
-      transition: var(--transition);
-      background: rgba(255,255,255,0.8);
-      color: var(--text);
+      padding:14px; border-radius:10px; border:1px solid rgba(0,0,0,0.08); font-family:inherit; font-size:16px; transition: var(--transition); background: rgba(255,255,255,0.8); color: var(--text);
     }
+    body.dark-mode input[type="text"], body.dark-mode input[type="email"], body.dark-mode textarea { border:1px solid rgba(255,255,255,0.1); background: rgba(22,33,62,0.8); color: var(--text); }
 
-    .dark-mode input[type="text"], 
-    .dark-mode input[type="email"], 
-    .dark-mode textarea {
-      border:1px solid rgba(255,255,255,0.1);
-      background: rgba(22,33,62,0.8);
-    }
-    
-    input[type="text"]:focus, input[type="email"]:focus, textarea:focus{
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(255,122,89,0.2);
-      transform: translateY(-2px);
-    }
-    
-    textarea{ 
-      min-height:120px; 
-      resize:vertical;
-    }
-    
-    .submit{
-      margin-top:20px;
-      width:100%;
-      padding:14px;
-      border-radius:12px;
-      border:none;
-      background:linear-gradient(90deg,var(--primary),var(--accent));
-      color:white; 
-      font-weight:700; 
-      font-size:16px;
-      cursor:pointer;
-      transition: var(--transition);
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus{ outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,122,89,0.12); transform: translateY(-2px); }
+    textarea{ min-height:120px; resize:vertical; }
+
+    .submit{ margin-top:20px; width:100%; padding:14px; border-radius:12px; border:none; background:linear-gradient(90deg,var(--primary),var(--accent)); color:white; font-weight:700; font-size:16px; cursor:pointer; transition: var(--transition); position: relative; overflow: hidden; }
+    .submit::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
+    .submit:hover::before { left: 100%; }
+    .submit:hover{ transform:translateY(-4px); box-shadow: 0 12px 28px rgba(255,122,89,0.25); }
+
+    .thanks{ display:none; text-align:center; padding:16px; margin-top:16px; background:linear-gradient(90deg,#dff7e2,#e9fff0); color:#13633c; border-radius:10px; font-weight:700; border: 1px solid #a8e6b9; }
+    body.dark-mode .thanks { background: linear-gradient(90deg, #1a3a2a, #1e4e34); color: #a8e6b9; border: 1px solid #2d5a3d; }
+
+    footer{ margin:60px auto 40px; text-align:center; color:#6b4f3a; font-size:15px; opacity:0.9; padding: 0 20px; max-width: 800px; }
+    body.dark-mode footer { color: #b8b8b8; }
+
+    /* Fade-in utility */
+    .fade-in { transform: translateY(20px); opacity: 0; transition: transform .7s cubic-bezier(.2,.9,.3,1), opacity .7s ease; }
+    .in-view { transform:none; opacity:1; }
+
+    /* Particles */
+    .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+    .particle { position: absolute; border-radius: 50%; background: rgba(255,122,89,0.08); animation: float 15s infinite linear; }
+    body.dark-mode .particle { background: rgba(255,122,89,0.04); }
+    @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+
+    /* --- TARJETAS FLOTANTES: sección "Versículos Bíblicos" --- */
+    .cards-section { padding: 14px; }
+    .cards-grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+    .float-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 16px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(37,36,54,0.08);
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: transform 280ms ease, box-shadow 280ms ease;
+      transform-style: preserve-3d;
+      will-change: transform;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
-    
-    .submit::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-    }
-    
-    .submit:hover::before {
-      left: 100%;
-    }
-    
-    .submit:hover{ 
-      transform:translateY(-4px); 
-      box-shadow: 0 12px 28px rgba(255,122,89,0.25);
-    }
+    body.dark-mode .float-card { box-shadow: 0 10px 30px rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.04); }
+    .float-card:hover { transform: translateY(-10px) rotateX(0.8deg) rotateY(0.8deg) scale(1.02); box-shadow: 0 20px 50px rgba(37,36,54,0.16); }
+    .float-card .card-title { font-weight:700; color: var(--muted); font-family: 'Rubik', sans-serif; font-size: 1.5rem; }
+    .float-card p { margin:0; color: #5a4331; }
+    body.dark-mode .float-card p { color: #d0d0d0; }
 
-    .thanks{
-      display:none;
-      text-align:center;
-      padding:16px;
-      margin-top:16px;
-      background:linear-gradient(90deg,#dff7e2,#e9fff0);
-      color:#13633c;
-      border-radius:10px;
-      font-weight:700;
-      border: 1px solid #a8e6b9;
-    }
-
-    .dark-mode .thanks {
-      background: linear-gradient(90deg, #1a3a2a, #1e4e34);
-      color: #a8e6b9;
-      border: 1px solid #2d5a3d;
-    }
-
-    footer{
-      margin:60px auto 40px;
-      text-align:center;
-      color:#6b4f3a;
-      font-size:15px;
-      opacity:0.9;
-      padding: 0 20px;
-      max-width: 800px;
-    }
-
-    .dark-mode footer {
-      color: #b8b8b8;
-    }
-
-    /* Animaciones mejoradas */
-    .fade-in {
-      transform: translateY(20px);
-      opacity: 0;
-      transition: transform .7s cubic-bezier(.2,.9,.3,1), opacity .7s ease;
-    }
-    
-    .in-view { 
-      transform:none; 
-      opacity:1; 
-    }
-    
-    /* Efectos de partículas para fondo (opcional) */
-    .particles {
+    /* Estilos para el modal de versículos */
+    .verse-modal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    
+    .verse-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .verse-content {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+    
+    .verse-modal.active .verse-content {
+      transform: scale(1);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--muted);
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .close-modal:hover {
+      background: rgba(255,122,89,0.1);
+      transform: rotate(90deg);
+    }
+    
+    .verse-reference {
+      font-family: 'Rubik', sans-serif;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .verse-text {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    
+    .verse-theme {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    /* Confeti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary);
+      opacity: 0;
+      z-index: 1001;
       pointer-events: none;
     }
+
+    /* --- NUEVA SECCIÓN: Metas y Progreso Personal --- */
+    .goals-section {
+      padding: 14px;
+    }
     
-    .particle {
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    
+    .goal-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(37,36,54,0.1);
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    body.dark-mode .goal-card {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .goal-card::before {
+      content: '';
       position: absolute;
-      border-radius: 50%;
-      background: rgba(255,122,89,0.1);
-      animation: float 15s infinite linear;
-    }
-
-    .dark-mode .particle {
-      background: rgba(255,122,89,0.05);
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+      transform: scaleY(0);
+      transition: transform 0.4s ease;
     }
     
-    @keyframes float {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-      }
+    .goal-card:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .goal-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(37,36,54,0.15);
+    }
+    
+    body.dark-mode .goal-card:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+    
+    .goal-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .goal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(255,122,89,0.25);
+    }
+    
+    .goal-title {
+      font-family: 'Rubik', sans-serif;
+      font-size: 1.4rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    
+    .goal-details {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex-grow: 1;
+    }
+    
+    .goal-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    
+    body.dark-mode .goal-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    
+    .goal-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .goal-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .goal-name {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    
+    .goal-percentage {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+    
+    .progress-container {
+      height: 10px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    body.dark-mode .progress-container {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .progress-bar {
+      height: 100%;
+      border-radius: 5px;
+      position: relative;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    
+    .academic .progress-bar {
+      background: linear-gradient(90deg, #4CAF50, #81C784);
+    }
+    
+    .personal .progress-bar {
+      background: linear-gradient(90deg, #FF9800, #FFB74D);
+    }
+    
+    .spiritual .progress-bar {
+      background: linear-gradient(90deg, #9C27B0, #BA68C8);
+    }
+    
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4));
+      transform: skewX(-15deg);
+    }
+    
+    .goal-description {
+      font-size: 0.9rem;
+      color: var(--text);
+      opacity: 0.8;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+    
+    .goal-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(0,0,0,0.1);
+    }
+    
+    body.dark-mode .goal-status {
+      border-top: 1px dashed rgba(255,255,255,0.1);
+    }
+    
+    .goal-deadline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    
+    .goal-priority {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .priority-high {
+      background: rgba(244,67,54,0.1);
+      color: #F44336;
+    }
+    
+    .priority-medium {
+      background: rgba(255,152,0,0.1);
+      color: #FF9800;
+    }
+    
+    .priority-low {
+      background: rgba(76,175,80,0.1);
+      color: #4CAF50;
     }
 
-    /* Mejoras responsive */
+    /* small responsive tweaks */
     @media (max-width:880px){
-      .hero h1{ font-size:34px }
-      nav.main-nav{ display:none }
-      .hamburger{ display:flex }
-      .music-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      }
-      .hobbies-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero h1{ font-size:34px; }
+      nav.main-nav{ display:none; }
+      .hamburger{ display:flex; }
+      .music-container { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+      .hobbies-grid { grid-template-columns: 1fr; }
+      .verse-text { font-size: 1.2rem; }
+      .verse-reference { font-size: 1.5rem; }
+      .goals-grid { grid-template-columns: 1fr; }
     }
-    
     @media (max-width:640px){
-      .nav {
-        padding: 10px 16px;
-      }
-      .hero {
-        padding: 40px 16px;
-        margin: 20px 0 40px;
-      }
-      .section-title {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-      .music-container {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      form.contact {
-        padding: 20px;
-      }
+      .nav { padding: 10px 16px; }
+      .hero { padding: 40px 16px; margin: 20px 0 40px; }
+      .section-title { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .music-container { grid-template-columns: 1fr; gap: 16px; }
+      form.contact { padding: 20px; }
+      .verse-content { padding: 30px 20px; }
+      .goal-card { padding: 20px; }
+      .goal-header { flex-direction: column; text-align: center; gap: 12px; }
+      .goal-icon { width: 50px; height: 50px; font-size: 20px; }
     }
-    
     @media (max-width:520px){
-      .brand .logo{ width:40px;height:40px }
-      .hero p.lead{ font-size:15px }
-      .music-card img{ height:140px }
-      .hobby .thumb{ width:100px;height:100px }
-      .hobby {
-        padding: 20px 16px;
-      }
-      /* Ajuste responsive para interlineado en móviles */
-      .hero p.lead {
-        line-height: 1.7;
-      }
-      .hobby:nth-child(3) p {
-        line-height: 1.7;
-      }
+      .brand .logo{ width:40px;height:40px; }
+      .hero p.lead{ font-size:15px; }
+      .music-card img{ height:140px; }
+      .hobby .thumb{ width:100px;height:100px; }
+      .hobby { padding: 20px 16px; }
+      .hero p.lead { line-height: 1.7; }
+      .verse-text { font-size: 1.1rem; }
+      .verse-reference { font-size: 1.3rem; }
     }
 
+    /* reduced motion */
     @media (prefers-reduced-motion: reduce){
-      .fade-in, .music-card, .hobby, .submit, .btn, .brand, header { 
-        transition:none !important; 
-        transform:none !important; 
-      }
-      .particle {
-        animation: none;
-        opacity: 0;
-      }
+      .fade-in, .music-card, .hobby, .submit, .btn, .brand, header, .float-card, .goal-card { transition:none !important; transform:none !important; }
+      .particle { animation: none; opacity: 0; }
+      .confetti { animation: none; }
+      .progress-bar { transition: none; }
     }
-    .logo img {
-  height: 50px;
-  width: auto;
-  border-radius: 25%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-  transform: scale(1.05);
-}
 
   </style>
 </head>
 <body>
-
   <!-- Partículas de fondo -->
-  <div class="particles" id="particles"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <!-- Modal para mostrar versículos -->
+  <div class="verse-modal" id="verseModal">
+    <div class="verse-content">
+      <button class="close-modal" id="closeModal" aria-label="Cerrar versículo">✕</button>
+      <h2 class="verse-reference" id="verseRef"></h2>
+      <p class="verse-text" id="verseText"></p>
+      <span class="verse-theme" id="verseTheme"></span>
+    </div>
+  </div>
 
   <header role="banner" id="mainHeader">
     <div class="nav">
       <div class="brand" aria-label="marca">
-        <div class="logo"><img src="logo.jpeg" alt="Logo Eduardo García Medina"></div>
+        <div class="logo" aria-hidden="false">
+          <!-- Mantienes tu imagen aquí -->
+          <img src="logo.jpeg" alt="Foto de perfil de Eduardo García Medina">
+        </div>
         <div>
           <div style="font-size:14px;color:#8b6f59">Eduardo García Medina</div>
           <div style="font-size:12px;color:#b08966">Estudiante · Programación web</div>
@@ -834,15 +668,18 @@ p {
         <a href="#inicio">Inicio</a>
         <a href="#musica">Música</a>
         <a href="#pasatiempos">Pasatiempos</a>
+        <a href="#metas">Metas</a>
+        <a href="#versiculos">Versículos</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
       <!-- Botón para cambiar tema -->
-      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <!-- moon/sun: visibility toggled by JS -->
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none">
           <circle cx="12" cy="12" r="5"></circle>
           <line x1="12" y1="1" x2="12" y2="3"></line>
           <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -855,25 +692,27 @@ p {
         </svg>
       </button>
 
-      <button class="hamburger" aria-label="Abrir menú" id="hambtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="hamburger" aria-label="Abrir menú" id="hambtn" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
     </div>
 
-    <div id="mobileMenu" style="display:none; padding:16px 24px; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95)); border-bottom:1px solid rgba(0,0,0,0.04); backdrop-filter: blur(10px);">
-      <a href="#inicio" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05); transition: all 0.2s ease">Inicio</a>
-      <a href="#musica" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05); transition: all 0.2s ease">Música</a>
-      <a href="#pasatiempos" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05); transition: all 0.2s ease">Pasatiempos</a>
-      <a href="#contacto" style="display:block;padding:12px 0;color:var(--muted);font-weight:600; transition: all 0.2s ease">Contacto</a>
+    <div id="mobileMenu" style="display:none; padding:16px 24px; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95)); border-bottom:1px solid rgba(0,0,0,0.04); backdrop-filter: blur(10px);" aria-hidden="true">
+      <a href="#inicio" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05);">Inicio</a>
+      <a href="#musica" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05);">Música</a>
+      <a href="#pasatiempos" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05);">Pasatiempos</a>
+      <a href="#metas" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05);">Metas</a>
+      <a href="#versiculos" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;border-bottom:1px solid rgba(0,0,0,0.05);">Versículos</a>
+      <a href="#contacto" style="display:block;padding:12px 0;color:var(--muted);font-weight:600;">Contacto</a>
     </div>
   </header>
 
   <main id="inicio">
-    <section class="hero fade-in">
-      <h1>Hola — Soy Eduardo (Lalito)</h1>
-      <p class="lead">Estudiante de Ingeniería en Computación. Esta página muestra mi trabajo, mis gustos y proyectos. Me encanta crear, aprender y compartir. Explora mis músicas y pasatiempos — siéntete libre de dejar un comentario.</p>
+    <section class="hero fade-in" aria-labelledby="hero-title">
+      <h1 id="hero-title">Hola — Soy Eduardo (Lalito)</h1>
+      <p class="lead">Estudiante de Ingeniería en Computación, apasionado por el desarrollo web y la música cristiana. Aquí comparto mis proyectos, intereses y versículos que inspiran mi camino profesional y personal.</p>
     </section>
 
     <div class="section-title">
@@ -882,110 +721,93 @@ p {
     </div>
 
     <section class="music-container" aria-labelledby="musica">
-      <article class="music-card fade-in">
+      <!-- 1 -->
+      <article class="music-card fade-in" aria-label="Holy Forever - Miel San Marcos & Chris Tolim">
         <img loading="lazy" src="https://i.ytimg.com/vi/-rJ0EuU7rYU/hqdefault.jpg" alt="Holy Forever - Miel San Marcos & Chris Tolim">
         <div class="label"><strong>1.</strong> Holy Forever - Miel San Marcos & Chris Tolim</div>
         <div class="music-actions">
           <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/-rJ0EuU7rYU?si=B325okG_Pud1XQ4A">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Ver
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
           </a>
         </div>
       </article>
 
-      <article class="music-card fade-in">
+      <!-- 2 -->
+      <article class="music-card fade-in" aria-label="Don't Stop Praying - Matthew West & Miel San Marcos">
         <img loading="lazy" src="https://i.ytimg.com/vi/lTvyPxkz83E/hqdefault.jpg" alt="Don't Stop Praying - Matthew West & Miel San Marcos">
         <div class="label"><strong>2.</strong> Don't Stop Praying - Matthew West & Miel San Marcos</div>
         <div class="music-actions">
           <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/lTvyPxkz83E?si=ZHSFSlzXlU2Zc9M7">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Ver
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
           </a>
         </div>
       </article>
 
-      <article class="music-card fade-in">
+      <!-- 3 -->
+      <article class="music-card fade-in" aria-label="Be The Moon - Chris Tolim">
         <img loading="lazy" src="https://i.ytimg.com/vi/Sejv8a-vCyc/hqdefault.jpg" alt="Be The Moon - Chris Tolim">
         <div class="label"><strong>3.</strong> Be The Moon - Chris Tolim</div>
         <div class="music-actions">
           <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Sejv8a-vCyc?si=EztzQIdM0j2zCbnS">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Ver
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
           </a>
         </div>
       </article>
 
-      <article class="music-card fade-in">
+      <!-- 4 -->
+      <article class="music-card fade-in" aria-label="Jesús Obrador de Milagros - Lucio Mella">
         <img loading="lazy" src="https://i.ytimg.com/vi/Jirf9dXDGy4/hqdefault.jpg" alt="Jesús Obrador de Milagros - Lucio Mella">
         <div class="label"><strong>4.</strong> Jesús Obrador de Milagros - Lucio Mella</div>
         <div class="music-actions">
           <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Jirf9dXDGy4?si=JLucaEQwf_A0zAhR">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Ver
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
           </a>
         </div>
       </article>
 
-      <article class="music-card fade-in">
+      <!-- 5 -->
+      <article class="music-card fade-in" aria-label="Emmanuel - Miel San Marcos">
         <img loading="lazy" src="https://i.ytimg.com/vi/nPQp3bcR7h8/hqdefault.jpg" alt="Emmanuel - Miel San Marcos">
         <div class="label"><strong>5.</strong> Emmanuel - Miel San Marcos</div>
         <div class="music-actions">
           <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/nPQp3bcR7h8?si=UtDSmN-tSrSGWXfY">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Ver
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
           </a>
         </div>
       </article>
 
-      <article class="music-card fade-in">
-  <img loading="lazy" src="https://i.ytimg.com/vi/Pn-PqlB_K4M/hqdefault.jpg" alt="O Come to the Altar - Elevation Worship">
-  <div class="label"><strong>6.</strong> Generación 12 - Quiero Conocer A Jesús (Yeshua)/Nuestro Dios</div>
-  <div class="music-actions">
-    <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Pn-PqlB_K4M?si=5UXRAxP9hvvpcYEG">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M8 5v14l11-7z"/>
-      </svg>
-      Ver
-    </a>
-  </div>
-</article>
+      <!-- 6 -->
+      <article class="music-card fade-in" aria-label="Generación 12 - Quiero Conocer A Jesús">
+        <img loading="lazy" src="https://i.ytimg.com/vi/Pn-PqlB_K4M/hqdefault.jpg" alt="Generación 12 - Quiero Conocer A Jesús">
+        <div class="label"><strong>6.</strong> Generación 12 - Quiero Conocer A Jesús (Yeshua)/Nuestro Dios</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Pn-PqlB_K4M?si=5UXRAxP9hvvpcYEG">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
+          </a>
+        </div>
+      </article>
 
-<article class="music-card fade-in">
-  <img loading="lazy" src="https://i.ytimg.com/vi/y3tyQqjS4qY/hqdefault.jpg" alt="Way Maker - Leeland">
-  <div class="label"><strong>7.</strong> Generación 12 - Vuelvo A Casa VIDEO OFICIAL</div>
-  <div class="music-actions">
-    <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/y3tyQqjS4qY?si=8mY0bvfJNRPD7ZcJ">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M8 5v14l11-7z"/>
-      </svg>
-      Ver
-    </a>
-  </div>
-</article>
+      <!-- 7 -->
+      <article class="music-card fade-in" aria-label="Generación 12 - Vuelvo A Casa">
+        <img loading="lazy" src="https://i.ytimg.com/vi/y3tyQqjS4qY/hqdefault.jpg" alt="Generación 12 - Vuelvo A Casa">
+        <div class="label"><strong>7.</strong> Generación 12 - Vuelvo A Casa VIDEO OFICIAL</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/y3tyQqjS4qY?si=8mY0bvfJNRPD7ZcJ">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
+          </a>
+        </div>
+      </article>
 
-<article class="music-card fade-in">
-  <img loading="lazy" src="https://i.ytimg.com/vi/tulshRDlQKM/hqdefault.jpg" alt="What a Beautiful Name - Hillsong Worship">
-  <div class="label"><strong>8.</strong> Jotta A - Muéstrame Tu Gloria (Vídeo Oficial)</div>
-  <div class="music-actions">
-    <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/tulshRDlQKM?si=hSgEH-ktCotO4aph">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M8 5v14l11-7z"/>
-      </svg>
-      Ver
-    </a>
-  </div>
-</article>
-
+      <!-- 8 -->
+      <article class="music-card fade-in" aria-label="Jotta A - Muéstrame Tu Gloria">
+        <img loading="lazy" src="https://i.ytimg.com/vi/tulshRDlQKM/hqdefault.jpg" alt="Jotta A - Muéstrame Tu Gloria">
+        <div class="label"><strong>8.</strong> Jotta A - Muéstrame Tu Gloria (Vídeo Oficial)</div>
+        <div class="music-actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/tulshRDlQKM?si=hSgEH-ktCotO4aph">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver
+          </a>
+        </div>
+      </article>
     </section>
 
     <div class="section-title" style="margin-top:48px">
@@ -994,22 +816,231 @@ p {
     </div>
 
     <section class="hobbies-grid" aria-labelledby="pasatiempos">
-      <div class="hobby fade-in">
-        <div class="thumb"><img loading="lazy" src="https://miro.medium.com/1*oZ4UrzmTiW8W6Jw5JeWQxQ.jpeg" alt="Videojuegos" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="hobby fade-in" aria-label="Jugar videojuegos">
+        <div class="thumb"><img loading="lazy" src="https://miro.medium.com/1*oZ4UrzmTiW8W6Jw5JeWQxQ.jpeg" alt="Imagen de videojuegos" style="width:100%;height:100%;object-fit:cover"></div>
         <h4>🎮 Jugar videojuegos</h4>
-        <p>Me entretengo por mucho tiempo, también, suelo estresarme porque pierdo muy seguido...</p>
+        <p>Me entretengo por mucho tiempo; también suelo estresarme porque pierdo muy seguido... pero aprendo y me divierto.</p>
       </div>
 
-      <div class="hobby fade-in">
-        <div class="thumb"><img loading="lazy" src="https://www.periodicopublicidad.com/asset/thumbnail,1280,720,center,center/media/lapublicidad/images/2021/04/13/20210413084201096589.jpg" alt="Escuchar música" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="hobby fade-in" aria-label="Escuchar música">
+        <div class="thumb"><img loading="lazy" src="https://www.periodicopublicidad.com/asset/thumbnail,1280,720,center,center/media/lapublicidad/images/2021/04/13/20210413084201096589.jpg" alt="Imagen de escuchar música" style="width:100%;height:100%;object-fit:cover"></div>
         <h4>🎧 Escuchar música</h4>
-        <p>La música me inspira en mis estudios y proyectos; me ayuda a concentrarme y a transformar el ánimo de mi día.</p>
+        <p>La música me inspira en mis estudios y proyectos; me ayuda a concentrarme y a transformar el ánimo del día.</p>
       </div>
 
-      <div class="hobby fade-in">
-        <div class="thumb"><img loading="lazy" src="https://static0.makeuseofimages.com/wordpress/wp-content/uploads/2024/08/some-3d-social-media-icons.jpg?w=1200&h=628&fit=crop" alt="Redes sociales" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="hobby fade-in" aria-label="Redes sociales">
+        <div class="thumb"><img loading="lazy" src="https://static0.makeuseofimages.com/wordpress/wp-content/uploads/2024/08/some-3d-social-media-icons.jpg?w=1200&h=628&fit=crop" alt="Imagen redes sociales" style="width:100%;height:100%;object-fit:cover"></div>
         <h4>🌐 Redes sociales</h4>
-        <p>Me gusta distraerme un rato viendo videos que me causan gracias, aunque suelo dedicarle muchio tiempo en ocasiones.</p>
+        <p>Me gusta distraerme viendo videos que me causan gracia; a veces me distraigo mucho, pero también me conecto con ideas.</p>
+      </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Metas y Progreso Personal -->
+    <div class="section-title" style="margin-top:48px">
+      <h2 id="metas">Mis Metas 2024</h2>
+      <div style="font-size:16px;color:#8b6f59;font-weight:600">Objetivos personales y progreso</div>
+    </div>
+
+    <section class="goals-section fade-in" aria-labelledby="metas">
+      <div class="goals-grid">
+        <!-- Meta 1: Académica -->
+        <div class="goal-card academic">
+          <div class="goal-header">
+            <div class="goal-icon">🎓</div>
+            <h3 class="goal-title">Metas Académicas</h3>
+          </div>
+          <div class="goal-details">
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Terminar semestre actual</span>
+                <span class="goal-percentage">75%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="75"></div>
+              </div>
+              <div class="goal-description">Completar todas las materias del ciclo actual con buen promedio</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Aprender React.js</span>
+                <span class="goal-percentage">40%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="40"></div>
+              </div>
+              <div class="goal-description">Dominar los fundamentos de React y crear 2 proyectos prácticos</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Proyecto final</span>
+                <span class="goal-percentage">25%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="25"></div>
+              </div>
+              <div class="goal-description">Desarrollar aplicación web completa para proyecto de carrera</div>
+            </div>
+          </div>
+          <div class="goal-status">
+            <span class="goal-deadline">Junio 2024</span>
+            <span class="goal-priority priority-high">Alta</span>
+          </div>
+        </div>
+
+        <!-- Meta 2: Personal -->
+        <div class="goal-card personal">
+          <div class="goal-header">
+            <div class="goal-icon">🌟</div>
+            <h3 class="goal-title">Desarrollo Personal</h3>
+          </div>
+          <div class="goal-details">
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Leer 12 libros</span>
+                <span class="goal-percentage">50%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="50"></div>
+              </div>
+              <div class="goal-description">Completar lectura de 12 libros (6 técnicos, 6 personales)</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Ejercicio semanal</span>
+                <span class="goal-percentage">80%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="80"></div>
+              </div>
+              <div class="goal-description">Mantener rutina de ejercicio 4-5 días por semana</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Aprendizaje musical</span>
+                <span class="goal-percentage">30%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="30"></div>
+              </div>
+              <div class="goal-description">Aprender a tocar 5 canciones en guitarra</div>
+            </div>
+          </div>
+          <div class="goal-status">
+            <span class="goal-deadline">Diciembre 2024</span>
+            <span class="goal-priority priority-medium">Media</span>
+          </div>
+        </div>
+
+        <!-- Meta 3: Espiritual -->
+        <div class="goal-card spiritual">
+          <div class="goal-header">
+            <div class="goal-icon">🙏</div>
+            <h3 class="goal-title">Crecimiento Espiritual</h3>
+          </div>
+          <div class="goal-details">
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Lectura bíblica</span>
+                <span class="goal-percentage">85%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="85"></div>
+              </div>
+              <div class="goal-description">Leer la Biblia completa en un año</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Tiempo de oración</span>
+                <span class="goal-percentage">75%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="75"></div>
+              </div>
+              <div class="goal-description">Mantener disciplina de oración diaria</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label">
+                <span class="goal-name">Servicio comunitario</span>
+                <span class="goal-percentage">45%</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="45"></div>
+              </div>
+              <div class="goal-description">Participar en 2 proyectos de servicio en mi comunidad</div>
+            </div>
+          </div>
+          <div class="goal-status">
+            <span class="goal-deadline">Diciembre 2024</span>
+            <span class="goal-priority priority-high">Alta</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Versículos Bíblicos -->
+    <div class="section-title" style="margin-top:48px">
+      <h2 id="versiculos">Versículos Bíblicos</h2>
+      <div style="font-size:16px;color:#8b6f59;font-weight:600">Palabras de inspiración y consuelo</div>
+    </div>
+
+    <section class="cards-section" aria-labelledby="versiculos">
+      <div class="cards-grid" id="cardsGrid">
+        <article class="float-card fade-in" data-verse="Jeremías 29:11" data-text="Porque yo sé los planes que tengo para ustedes —declara el Señor—, planes de bienestar y no de calamidad, para darles un futuro y una esperanza." data-theme="Esperanza" tabindex="0" role="article" aria-label="Versículo Jeremías 29:11">
+          <div class="card-title">Jeremías 29:11</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
+
+        <article class="float-card fade-in" data-verse="Filipenses 4:13" data-text="Todo lo puedo en Cristo que me fortalece." data-theme="Fortaleza" tabindex="0" role="article" aria-label="Versículo Filipenses 4:13">
+          <div class="card-title">Filipenses 4:13</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
+
+        <article class="float-card fade-in" data-verse="Juan 3:16" data-text="Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna." data-theme="Amor" tabindex="0" role="article" aria-label="Versículo Juan 3:16">
+          <div class="card-title">Juan 3:16</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
+
+        <article class="float-card fade-in" data-verse="Salmos 23:1" data-text="El Señor es mi pastor, nada me faltará." data-theme="Providencia" tabindex="0" role="article" aria-label="Versículo Salmos 23:1">
+          <div class="card-title">Salmos 23:1</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
+
+        <article class="float-card fade-in" data-verse="Romanos 8:28" data-text="Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su propósito son llamados." data-theme="Confianza" tabindex="0" role="article" aria-label="Versículo Romanos 8:28">
+          <div class="card-title">Romanos 8:28</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
+
+        <article class="float-card fade-in" data-verse="Isaías 41:10" data-text="No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia." data-theme="Consuelo" tabindex="0" role="article" aria-label="Versículo Isaías 41:10">
+          <div class="card-title">Isaías 41:10</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
+
+        <!-- NUEVOS VERSÍCULOS AÑADIDOS -->
+        <article class="float-card fade-in" data-verse="Proverbios 3:5-6" data-text="Confía en el Señor de todo corazón, y no te apoyes en tu propia prudencia. Reconócelo en todos tus caminos, y él enderezará tus veredas." data-theme="Confianza" tabindex="0" role="article" aria-label="Versículo Proverbios 3:5-6">
+          <div class="card-title">Proverbios 3:5-6</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
+
+        <article class="float-card fade-in" data-verse="Mateo 11:28" data-text="Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar." data-theme="Descanso" tabindex="0" role="article" aria-label="Versículo Mateo 11:28">
+          <div class="card-title">Mateo 11:28</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn show-verse">Ver versículo</button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -1039,7 +1070,7 @@ p {
         </div>
 
         <button type="submit" class="submit">Enviar</button>
-        <div class="thanks" id="thanks">¡Gracias! Tu comentario fue enviado correctamente. 😊</div>
+        <div class="thanks" id="thanks" role="status" aria-live="polite">¡Gracias! Tu comentario fue enviado correctamente. 😊</div>
       </form>
     </div>
 
@@ -1050,162 +1081,337 @@ p {
   </footer>
 
   <script>
-    // Año actual
+    // Año en footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Función para cambiar entre modo claro y oscuro
+    // --- Preferencia de tema (modo oscuro) ---
     const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
+    const rootBody = document.body;
 
-    // Verificar preferencia guardada o preferencia del sistema
-    const savedTheme = localStorage.getItem('theme');
+    // Detectar preferencia del sistema
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
 
+    // Aplicar modo inicial: si guardado es 'dark' o (no guardado y systemPrefersDark) => dark
     if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-      body.classList.add('dark-mode');
+      rootBody.classList.add('dark-mode');
+    } else {
+      rootBody.classList.remove('dark-mode');
     }
 
-    // Alternar modo oscuro
+    // Actualiza iconos del botón segun estado
+    function updateThemeIcon() {
+      const moon = themeToggle.querySelector('.moon-icon');
+      const sun = themeToggle.querySelector('.sun-icon');
+      if (rootBody.classList.contains('dark-mode')) {
+        moon.style.display = 'none';
+        sun.style.display = 'block';
+      } else {
+        moon.style.display = 'block';
+        sun.style.display = 'none';
+      }
+    }
+    updateThemeIcon();
+
     themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      
-      // Guardar preferencia
-      if (body.classList.contains('dark-mode')) {
+      rootBody.classList.toggle('dark-mode');
+      updateThemeIcon();
+      if (rootBody.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
       } else {
         localStorage.setItem('theme', 'light');
       }
     });
 
-    // Efecto de partículas
-    function createParticles() {
-      const container = document.getElementById('particles');
-      const particleCount = 20;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Tamaño y posición aleatorios
-        const size = Math.random() * 60 + 10;
-        const left = Math.random() * 100;
-        const delay = Math.random() * 15;
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${left}%`;
-        particle.style.animationDelay = `${delay}s`;
-        
-        container.appendChild(particle);
-      }
-    }
-    
-    createParticles();
-
-    // Header scroll effect
-    const header = document.getElementById('mainHeader');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+    // Escuchar cambios en preferencia del sistema y actualizar si no hay preferencia guardada
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      const saved = localStorage.getItem('theme');
+      if (!saved) {
+        if (e.matches) {
+          rootBody.classList.add('dark-mode');
+        } else {
+          rootBody.classList.remove('dark-mode');
+        }
+        updateThemeIcon();
       }
     });
 
-    // Menú móvil
+    // --- Partículas de fondo ---
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 20;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        const size = Math.random() * 60 + 10;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const top = Math.random() * 100;
+
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${left}%`;
+        particle.style.top = `${top}%`;
+        particle.style.animationDelay = `${delay}s`;
+
+        container.appendChild(particle);
+      }
+    }
+    createParticles();
+
+    // --- Header scroll effect ---
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // --- Menú móvil ---
     const hambtn = document.getElementById('hambtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    
+
     if (hambtn) {
       hambtn.addEventListener('click', () => {
-        if (mobileMenu.style.display === 'none' || !mobileMenu.style.display) {
-          mobileMenu.style.display = 'block';
-          hambtn.setAttribute('aria-expanded', 'true');
-        } else {
-          mobileMenu.style.display = 'none';
-          hambtn.setAttribute('aria-expanded', 'false');
-        }
+        const isOpen = mobileMenu.style.display === 'block';
+        mobileMenu.style.display = isOpen ? 'none' : 'block';
+        mobileMenu.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+        hambtn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
       });
     }
 
-    // Navegación suave
+    // Cerrar menú móvil al hacer clic en un enlace (ya incluye enlaces del mobileMenu)
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      if (window.innerWidth < 880) {
+        mobileMenu.style.display = 'none';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        hambtn.setAttribute('aria-expanded', 'false');
+      }
+    }));
+
+    // Cerrar menú móvil al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth < 880 && mobileMenu.style.display === 'block') {
+        const path = e.composedPath();
+        if (!path.includes(mobileMenu) && !path.includes(hambtn)) {
+          mobileMenu.style.display = 'none';
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          hambtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    // --- Navegación suave (anchors) ---
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function(e) {
         const id = this.getAttribute('href');
-        if(id.length > 1) {
-          e.preventDefault();
+        if (id.length > 1) {
           const el = document.querySelector(id);
-          if(el) {
-            const headerHeight = document.querySelector('header').offsetHeight;
+          if (el) {
+            e.preventDefault();
+            const headerHeight = document.querySelector('header').offsetHeight || 0;
             const elementPosition = el.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-            
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-            
-            // Cerrar menú móvil al hacer clic en un enlace
-            if(window.innerWidth < 880) {
-              mobileMenu.style.display = 'none';
-              hambtn.setAttribute('aria-expanded', 'false');
-            }
+            const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 8;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           }
         }
       });
     });
 
-    // Animación al hacer scroll
-    const io = new IntersectionObserver((entries) => {
+    // --- IntersectionObserver para fade-in ---
+    const io = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12 });
 
     document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 
-    // Formulario de contacto
+    // --- Formulario (feedback visual) ---
     const form = document.getElementById('contactForm');
     const thanks = document.getElementById('thanks');
-    
+
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
         const name = form.nombre.value.trim();
-        if(!name) { 
-          form.nombre.focus(); 
-          return; 
-        }
+        if (!name) { form.nombre.focus(); return; }
 
         thanks.style.display = 'block';
         form.querySelector('.submit').disabled = true;
-        
+
         setTimeout(() => {
           form.reset();
           form.querySelector('.submit').disabled = false;
-          
-          setTimeout(() => { 
-            thanks.style.display = 'none'; 
-          }, 3500);
+          setTimeout(() => { thanks.style.display = 'none'; }, 3500);
         }, 900);
       });
     }
 
-    // Cerrar menú móvil al hacer clic fuera
-    document.addEventListener('click', (e) => {
-      if(window.innerWidth < 880 && mobileMenu.style.display === 'block') {
-        const isClickInside = e.composedPath().includes(mobileMenu) || e.composedPath().includes(hambtn);
-        if(!isClickInside) {
-          mobileMenu.style.display = 'none';
-          hambtn.setAttribute('aria-expanded', 'false');
+    // --- Tarjetas flotantes: efecto parallax / tilt leve en mousemove ---
+    const cards = document.querySelectorAll('.float-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const dx = (x - cx) / cx; // -1 .. 1
+        const dy = (y - cy) / cy; // -1 .. 1
+        const rotateX = (dy * 6).toFixed(2);
+        const rotateY = (dx * -6).toFixed(2);
+        card.style.transform = `perspective(800px) translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+
+      // keyboard accessible focus style (small tilt)
+      card.addEventListener('focus', () => {
+        card.style.transform = 'translateY(-8px) scale(1.02)';
+      });
+      card.addEventListener('blur', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Accessibility: allow keyboard to toggle mobile menu with Enter on hamburger
+    hambtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hambtn.click(); }
+    });
+
+    // --- Funcionalidad para versículos bíblicos ---
+    const verseModal = document.getElementById('verseModal');
+    const closeModal = document.getElementById('closeModal');
+    const verseRef = document.getElementById('verseRef');
+    const verseText = document.getElementById('verseText');
+    const verseTheme = document.getElementById('verseTheme');
+    const showVerseButtons = document.querySelectorAll('.show-verse');
+
+    // Función para mostrar confeti
+    function createConfetti() {
+      const colors = ['#ff7a59', '#ffd36b', '#6b4f3a', '#ffffff', '#8b6f59'];
+      const confettiCount = 150;
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 10 + 5;
+        const left = Math.random() * 100;
+        const animationDuration = Math.random() * 3 + 2;
+        
+        confetti.style.backgroundColor = color;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.left = `${left}%`;
+        confetti.style.top = '-20px';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.animation = `confettiFall ${animationDuration}s linear forwards`;
+        
+        document.body.appendChild(confetti);
+        
+        // Remover confeti después de la animación
+        setTimeout(() => {
+          confetti.remove();
+        }, animationDuration * 1000);
+      }
+    }
+
+    // Añadir keyframes para la animación del confeti
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
         }
       }
+    `;
+    document.head.appendChild(style);
+
+    // Mostrar versículo
+    showVerseButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.float-card');
+        const verse = card.getAttribute('data-verse');
+        const text = card.getAttribute('data-text');
+        const theme = card.getAttribute('data-theme');
+        
+        verseRef.textContent = verse;
+        verseText.textContent = text;
+        verseTheme.textContent = theme;
+        
+        verseModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Crear confeti después de un pequeño retraso para que coincida con la animación del modal
+        setTimeout(createConfetti, 300);
+      });
     });
+
+    // Cerrar modal
+    closeModal.addEventListener('click', () => {
+      verseModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Cerrar modal al hacer clic fuera del contenido
+    verseModal.addEventListener('click', (e) => {
+      if (e.target === verseModal) {
+        verseModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && verseModal.classList.contains('active')) {
+        verseModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // --- Animación para barras de progreso de metas ---
+    function animateProgressBars() {
+      const progressBars = document.querySelectorAll('.progress-bar[data-progress]');
+      progressBars.forEach(bar => {
+        const progress = bar.getAttribute('data-progress');
+        // Usamos setTimeout para asegurar que la animación se ejecute después del renderizado
+        setTimeout(() => {
+          bar.style.width = progress + '%';
+        }, 100);
+      });
+    }
+
+    // Ejecutar cuando la sección de metas sea visible
+    const goalsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateProgressBars();
+          goalsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    // Observar la sección de metas
+    const goalsSection = document.getElementById('metas');
+    if (goalsSection) {
+      goalsObserver.observe(goalsSection);
+    }
+
   </script>
 </body>
 </html>
+
 
